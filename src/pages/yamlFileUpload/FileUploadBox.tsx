@@ -34,7 +34,6 @@ export const FileDragDrop: React.FC = () => {
 
     return (
         <Box sx={{
-            borderRadius: "24px"
         }}>
             <Paper
                 sx={{
@@ -78,8 +77,8 @@ export const FileDragDrop: React.FC = () => {
                             </Box>
                         )}
             </Paper>
-            {(loadingFile === false && selectedFile) ? 
-                <PullRequestDetailListBox/>
+            {(loadingFile === false && selectedFile) ?
+                <PullRequestDetailListBox />
                 : null
             }
         </Box>
