@@ -11,7 +11,6 @@ const TobBar = (props: Props) => {
                 <IconButton component={Link} to="/pull-requests" sx={{verticalAlign : "middle", padding:"15px"}}>
                     <Typography fontWeight="bold">pull request</Typography>
                 </IconButton>
-
                 <IconButton component={Link} to="/yaml/file-uploads" sx={{verticalAlign : "middle", padding:"15px"}}>
                     <Typography fontWeight="bold">file upload</Typography>
                 </IconButton>

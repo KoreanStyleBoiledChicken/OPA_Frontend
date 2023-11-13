@@ -4,7 +4,8 @@ import pullRequestTestData from './PullRequestTest'
 import colorConfigs from '../../config/colorConfigs'
 import StatusBox from './component/StatusBox'
 import AvatarBox from './component/AvatarBox'
-import { Link } from 'react-router-dom'
+import { PullRequestType } from '../../models/PullRequestType'
+import { setAppState } from '../../redux/appslice'
 
 
 
@@ -14,6 +15,14 @@ const PullRequestPage = () => {
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
+
+    function handleLinkClick (e : any, prType : PullRequestType ) {
+        e.preventDefault();
+        setAppState(prType);
+        console.log(prType.companyName);
+    
+        window.location.href = `/pull-requests/1`;
+      }
 
     return (
 
@@ -46,12 +55,12 @@ const PullRequestPage = () => {
                         <TableBody sx={{ width: "100%" }}>
                             {pullRequestTestData.map((item, index) => (
                                 <TableRow hover >
-
                                     <TableCell align='center' sx={{ width: "10%" }}>
                                         <AvatarBox companyName={item.companyName}></AvatarBox>
                                     </TableCell>
-                                    <Link to={'/pull-requests/1'} style={{ textDecoration: 'none' }} >
-                                        <TableCell sx={{ width: "70%" }}>
+
+
+                                        <TableCell onClick={(e) => (handleLinkClick(e, item))} sx={{ width: "70%" }}>
                                             <Box>
                                                 <Typography sx={{
                                                     fontSize: "17px",
@@ -67,7 +76,6 @@ const PullRequestPage = () => {
                                                 </Typography>
                                             </Box>
                                         </TableCell>
-                                    </Link>
                                     <TableCell align='center' sx={{ width: "20%" }}>
                                         <StatusBox status={item.status} count={item.count} />
                                     </TableCell>

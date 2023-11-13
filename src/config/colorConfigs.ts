@@ -15,7 +15,9 @@ const colorConfigs = {
         sub : "#89939E"
     },
     green : {
+        shade1 : "#43A046",
         shade2 : "#388E3B",
+        shade3 : "#237D31",
         shade4: "#1B5E1F",
         shade5 : "#103E13"
     }

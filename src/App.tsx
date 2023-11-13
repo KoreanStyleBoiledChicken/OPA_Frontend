@@ -13,17 +13,23 @@ function App() {
       <Routes>
         <Route path="/">
         </Route>
-        <Route path='/pull-requests' element={<MainLayout children={<PullRequestPage/>}/> } />
-        <Route path='/yaml/file-uploads' element={<MainLayout children={<YamlFileUploadPage/>}/> } />
-        <Route path='/pull-requests/1' element={<PullRequestDetailPage pr={{
+        <Route path='/pull-requests' element={<MainLayout children={<PullRequestPage />} />} />
+        <Route path='/yaml/file-uploads' element={<MainLayout children={<YamlFileUploadPage />} />} />
+        <Route path='/pull-requests/1' element={<MainLayout children={<PullRequestDetailPage pr={{
           id: 3,
           companyName: 'Hello',
           prName: '#16 ingress 보안 설정 변경',
           prTimeStamp: "03 January 2023 02:47 PM",
           status: '위험',
           count: 15
-        }}/>} />
-    
+        }} />
+        }
+
+
+
+
+        />} />
+
       </Routes>
     </BrowserRouter>
   );

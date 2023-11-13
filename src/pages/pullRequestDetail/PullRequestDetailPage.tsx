@@ -11,8 +11,6 @@ type Props = {
 const PullRequestDetailPage = (props: Props) => {
     return (
         <Box sx={{
-            margin: "40px",
-            padding: "20px",
         }}>
             <Box display="flex" justifyContent="space-between"
                 sx={{

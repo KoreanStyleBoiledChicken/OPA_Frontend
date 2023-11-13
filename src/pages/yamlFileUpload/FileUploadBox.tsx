@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Paper, Typography, Input, InputLabel, Box } from '@mui/material';
 import colorConfigs from '../../config/colorConfigs';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import CachedIcon from '@mui/icons-material/Cached';
 import PullRequestDetailListBox from '../pullRequestDetail/component/PullRequestDetailListBox';
+import LoopIcon from '@mui/icons-material/Loop';
 
 export const FileDragDrop: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -50,7 +50,20 @@ export const FileDragDrop: React.FC = () => {
                 {
                     loadingFile ?
                         <Box sx={{ verticalAlign: "middle", display: "table-cell" }}>
-                            <CachedIcon sx={{ fontSize: "48px", color: colorConfigs.green.shade4 }} />
+                            <LoopIcon
+                                sx={{
+                                    fontSize: "48px", color: colorConfigs.green.shade4,
+                                    animation: "spin 2s linear infinite",
+                                    "@keyframes spin": {
+                                        "0%": {
+                                            transform: "rotate(360deg)",
+                                        },
+                                        "100%": {
+                                            transform: "rotate(0deg)",
+                                        },
+                                    },
+                                }}
+                            />
                         </Box>
 
                         : selectedFile ? (
