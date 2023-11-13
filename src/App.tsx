@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PullRequest from './pages/pullRequest/PullRequest';
+import PullRequestPage from './pages/pullRequest/PullRequestPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Route path="/">
           
         </Route>
-        <Route path='/pull-requests' element={<PullRequest/>} />
+        <Route path='/pull-requests' element={<PullRequestPage/>} />
       </Routes>
     </BrowserRouter>
   );
