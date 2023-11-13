@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { RelatedObject } from '../../../models/DenyType'
 import { Box, Collapse, Divider, List, Typography } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { RelatedObject } from '../../../models/FileDenyType';
 
 type Props = {
     obj: RelatedObject,
@@ -63,26 +63,11 @@ const RelatedCollaspItem = (props: Props) => {
 
                         ))}
                     </Box>}
-
-
-
-                    {/* {item.child?.map((route, index) => (
-                        route.sidebarProps ? (
-                            <SidebarInsideItem item={route} key={index} />
-                        ) : null
-                    ))} */}
                 </List>
             </Collapse>
             <Divider />
         </Box>
     )
-
-
-    // (rule, index) => (
-    //     <Typography>
-    //         {props.obj.kind}
-    //     </Typography>
-    // )
 }
 
 export default RelatedCollaspItem

@@ -3,10 +3,12 @@ import { PullRequestType } from '../../models/PullRequestType'
 import AvatarBox from '../pullRequest/component/AvatarBox'
 import colorConfigs from '../../config/colorConfigs'
 import StatusBox from '../pullRequest/component/StatusBox'
-import { DenyList } from '../../models/DenyType'
-import { data } from './PullRequestDetailTestData'
+import { data2, data3 } from './PullRequestDetailTestData'
 import { RuleEnum } from '../../enums/RuleEnum'
-import RelatedCollaspItem from './component/RelatedCollaspItem'
+import { FileDenyList } from '../../models/FileDenyType'
+import RelatedCollaspItem from './component/FileRelatedCollaspItem'
+import { IngressDenyList } from '../../models/IngressDenyType'
+import IngressCollaspItem from './component/IngressCollaspItem'
 
 type Props = {
     pr: PullRequestType
@@ -15,7 +17,9 @@ type Props = {
 
 const PullRequestDetailPage = (props: Props) => {
 
-    const parsedData: DenyList = JSON.parse(data);
+    
+    const parsedData2: FileDenyList = JSON.parse(data2);
+    const parsedData3: IngressDenyList = JSON.parse(data3);
 
     return (
         <Box sx={{
@@ -55,13 +59,27 @@ const PullRequestDetailPage = (props: Props) => {
             <Box sx={{
                 padding: "20px"
             }}>
+                <Box padding="10px"></Box>
                 {
-                    parsedData.deny.map((deny, index) => (
-                        deny.ruleId === "RBAC-001" ? (
+                    parsedData2.deny.map((deny, index) => (
+                        deny.ruleId === "RBAC-002" ? (
                             <Box>
-                                <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>{RuleEnum.RBAC001}</Typography>
+                                <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>{RuleEnum.RBAC002}</Typography>
                                 {deny.alertObject.externalObjects.relatedObjects.map((relateObj, index) => (
                                     <RelatedCollaspItem obj={relateObj} altMsg={deny.alertMessage}></RelatedCollaspItem>
+                                ))}
+                            </Box>) : null
+                    ))
+                }
+
+                <Box padding="40px"></Box>
+                {
+                    parsedData3.deny.map((deny, index) => (
+                        deny.ruleId === "RBAC-003" ? (
+                            <Box>
+                                <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>{RuleEnum.RBAC003}</Typography>
+                                {deny.alertObject.k8SApiObjects.map((obj, index) => (
+                                    <IngressCollaspItem obj={obj} altMsg={deny.alertMessage}></IngressCollaspItem>
                                 ))}
                             </Box>) : null
                     ))

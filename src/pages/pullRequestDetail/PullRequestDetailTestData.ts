@@ -1,4 +1,6 @@
-export const data = `{
+
+
+export const data2 = `{
     "deny": [
         {
             "alertMessage": "service account: john-dev has the following permissions in the cluster: test",
@@ -62,7 +64,75 @@ export const data = `{
                 "k8sApiObjects": []
             },
             "alertScore": 7,
-            "ruleId": "RBAC-001"
+            "ruleId": "RBAC-002"
         }
     ]
 }`
+
+export const data3 = `
+{
+    "deny": [
+        {
+            "ruleId": "RBAC-003",
+            "alertMessage": "Ingress host conflicts with Ingress ecommerce/foo",
+            "alertObject": {
+                "k8SApiObjects": [
+                    {
+                        "kind": "Ingress",
+                        "metadata": {
+                            "name": "prod",
+                            "namespace": "ecommerce"
+                        },
+                        "spec": {
+                            "rules": [
+                                {
+                                    "host": "initech.com",
+                                    "http": {
+                                        "paths": [
+                                            {
+                                                "backend": {
+                                                    "serviceName": "banking",
+                                                    "servicePort": 443
+                                                },
+                                                "path": "/finance"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "kind": "Ingress",
+                        "metadata": {
+                            "name": "foo",
+                            "namespace": "ecommerce"
+                        },
+                        "spec": {
+                            "rules": [
+                                {
+                                    "host": "initech.com",
+                                    "http": {
+                                        "paths": [
+                                            {
+                                                "backend": {
+                                                    "serviceName": "banking",
+                                                    "servicePort": 443
+                                                },
+                                                "path": "/finance"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "input_name": "prod",
+    "input_ns": "ecommerce",
+    "is_ingress": true
+}
+`

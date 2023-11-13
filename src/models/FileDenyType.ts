@@ -1,4 +1,4 @@
-export interface DenyList {
+export interface FileDenyList {
     deny: Deny[]
   }
   
