@@ -14,7 +14,7 @@ function App() {
           
         </Route>
         <Route path='/pull-requests' element={<PullRequestPage/>} />
-        <Route path='/pull-requests/file-uploads' element={<PullRequestFileUploadPage/>} />
+        <Route path='/yaml/file-uploads' element={<PullRequestFileUploadPage/>} />
         <Route path='/pull-requests/1' element={<PullRequestDetailPage pr={{
           id: 3,
           companyName: 'Hello',

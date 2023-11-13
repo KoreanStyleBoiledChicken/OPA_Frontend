@@ -18,8 +18,6 @@ const PullRequestFileUploadPage = (props: Props) => {
                 <FileDragDrop></FileDragDrop>
             </Box>
         </Box>
-            
-
     )
 }
 
