@@ -4,6 +4,7 @@ import pullRequestTestData from './PullRequestTest'
 import colorConfigs from '../../config/colorConfigs'
 import StatusBox from './component/StatusBox'
 import AvatarBox from './component/AvatarBox'
+import { Link } from 'react-router-dom'
 
 
 
@@ -11,7 +12,7 @@ const PullRequestPage = () => {
 
     const [company, setAge] = React.useState('');
     const handleChange = (event: SelectChangeEvent) => {
-      setAge(event.target.value);
+        setAge(event.target.value);
     };
 
     return (
@@ -46,34 +47,38 @@ const PullRequestPage = () => {
                     <Paper>
                         <Table
                             aria-labelledby="tableTitle">
-                            {pullRequestTestData.map((item, index) => (
-                                <TableBody sx={{ width: "100%" }}>
-                                    <TableRow hover>
+                            <TableBody sx={{ width: "100%" }}>
+                                {pullRequestTestData.map((item, index) => (
+                                    <TableRow hover >
+
                                         <TableCell align='center' sx={{ width: "10%" }}>
                                             <AvatarBox companyName={item.companyName}></AvatarBox>
                                         </TableCell>
-                                        <TableCell sx={{ width: "70%" }}>
-                                            <Box>
-                                                <Typography sx={{
-                                                    fontSize: "17px",
-                                                    fontWeight: "bold"
-                                                }}>
-                                                    {item.prName}
-                                                </Typography>
-                                                <Typography sx={{
-                                                    fontSize: "14px",
-                                                    color: colorConfigs.font.sub
-                                                }}>
-                                                    {item.prTimeStamp}
-                                                </Typography>
-                                            </Box>
-                                        </TableCell>
+                                        <Link to={'/pull-requests/1'} style={{textDecoration: 'none' }} >
+                                            <TableCell sx={{ width: "70%" }}>
+                                                <Box>
+                                                    <Typography sx={{
+                                                        fontSize: "17px",
+                                                        fontWeight: "bold"
+                                                    }}>
+                                                        {item.prName}
+                                                    </Typography>
+                                                    <Typography sx={{
+                                                        fontSize: "14px",
+                                                        color: colorConfigs.font.sub
+                                                    }}>
+                                                        {item.prTimeStamp}
+                                                    </Typography>
+                                                </Box>
+                                            </TableCell>
+                                        </Link>
                                         <TableCell align='center' sx={{ width: "20%" }}>
                                             <StatusBox status={item.status} count={item.count} />
                                         </TableCell>
+
                                     </TableRow>
-                                </TableBody>
-                            ))}
+                                ))}
+                            </TableBody>
                         </Table>
                     </Paper>
                 </Box>
