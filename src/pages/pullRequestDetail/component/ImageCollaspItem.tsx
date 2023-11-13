@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { K8SapiObject } from '../../../models/IngressDenyType'
+import { K8SapiObject } from '../../../models/ImageDenyType'
 import { Box, Collapse, Divider, List, Typography } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -8,8 +8,7 @@ type Props = {
     altMsg: string
 }
 
-const IngressCollaspItem = (props: Props) => {
-
+const ImageCollaspItem = (props: Props) => {
     const [open, setOpen] = useState(false);
     return (
         <Box>
@@ -20,33 +19,37 @@ const IngressCollaspItem = (props: Props) => {
 
             <Collapse in={open} timeout="auto">
                 <List sx={{ marginX: "20px", marginBottom: "20px" }}>
-                    <Box display="flex">
+                    <Box display="flex" padding="8px">
                         <Typography width="240px">kind</Typography>
                         <Typography>{props.obj.kind}</Typography>
                     </Box>
-                    <Box display="flex">
+                    <Box display="flex" padding="8px">
                         <Typography width="240px">metadata - name</Typography>
                         <Typography>{props.obj.metadata.name}</Typography>
                     </Box>
-                    <Box display="flex">
-                        <Typography width="240px">metadata - namespace</Typography>
-                        <Typography>{props.obj.metadata.namespace}</Typography>
-                    </Box>
-                    <Box display="flex">
-                        <Typography width="240px">spec</Typography>
-                        {props.obj.spec.rules.map((rule, index) => (
-                                rule.http.paths.map((path) => (
-                                    <Typography>{`${rule.host}${path.path}:${path.backend.servicePort}`}</Typography>
-                                ))
-                            ))
+                    <Box display="flex" padding="8px">
+                        <Typography width="240px">container</Typography>
+                        <Box>
+                        {props.obj.spec.containers.map((container, index) => (
+                            <Box>
+                                <Box display="flex" paddingRight="8px">
+                                    <Typography paddingRight="4px">name: </Typography>
+                                    <Typography>{container.name}</Typography>
+                                </Box>
+                                <Box display="flex" sx={{paddingY : "8px"}}>
+                                    <Typography paddingRight="4px">image : </Typography>
+                                    <Typography>{container.image}</Typography>
+                                </Box>
+                            </Box>
+                        ))
                         }
+                        </Box>
                     </Box>
                 </List>
             </Collapse>
             <Divider />
         </Box>
-
     )
 }
 
-export default IngressCollaspItem
+export default ImageCollaspItem

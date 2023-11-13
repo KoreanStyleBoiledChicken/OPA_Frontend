@@ -1,5 +1,6 @@
 
 
+
 export const data2 = `{
     "deny": [
         {
@@ -134,5 +135,39 @@ export const data3 = `
     "input_name": "prod",
     "input_ns": "ecommerce",
     "is_ingress": true
+}
+`
+
+
+export const data4 = `
+{
+    "deny": [
+        {
+            "ruleId": "RBAC-004",
+            "alertMessage": "Image 'mysql' comes from untrusted registry",
+            "alertObject": {
+                "k8SApiObjects": [
+                    {
+                        "kind": "Pod",
+                        "metadata": {
+                            "name": "myapp"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "image": "hooli.com/nginx",
+                                    "name": "nginx-frontend"
+                                },
+                                {
+                                    "image": "mysql",
+                                    "name": "mysql-backend"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
 }
 `
