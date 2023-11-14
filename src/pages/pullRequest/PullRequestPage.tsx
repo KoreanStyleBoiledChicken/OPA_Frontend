@@ -4,7 +4,9 @@ import pullRequestTestData from './PullRequestTest'
 import colorConfigs from '../../config/colorConfigs'
 import StatusBox from './component/StatusBox'
 import AvatarBox from './component/AvatarBox'
-import { Link } from 'react-router-dom'
+import { PullRequestType } from '../../models/PullRequestType'
+import { setAppState } from '../../redux/appslice'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -14,6 +16,15 @@ const PullRequestPage = () => {
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
+    const navigate = useNavigate();
+
+    function handleLinkClick (e : any, prType : PullRequestType ) {
+        e.preventDefault();
+        setAppState(prType);
+        console.log(prType.companyName);
+        navigate(`/pull-requests/${prType.id}`,{state: {pr : prType}}
+        );
+      }
 
     return (
 
@@ -38,7 +49,7 @@ const PullRequestPage = () => {
             </Box>
             {/* 리스트뷰 */}
             <Box sx={{
-                marginTop: "20px"
+                marginTop: "2px"
             }}>
                 <Paper>
                     <Table
@@ -46,12 +57,12 @@ const PullRequestPage = () => {
                         <TableBody sx={{ width: "100%" }}>
                             {pullRequestTestData.map((item, index) => (
                                 <TableRow hover >
-
                                     <TableCell align='center' sx={{ width: "10%" }}>
                                         <AvatarBox companyName={item.companyName}></AvatarBox>
                                     </TableCell>
-                                    <Link to={'/pull-requests/1'} style={{ textDecoration: 'none' }} >
-                                        <TableCell sx={{ width: "70%" }}>
+
+
+                                        <TableCell onClick={(e) => (handleLinkClick(e, item))} sx={{ width: "70%" }}>
                                             <Box>
                                                 <Typography sx={{
                                                     fontSize: "17px",
@@ -67,7 +78,6 @@ const PullRequestPage = () => {
                                                 </Typography>
                                             </Box>
                                         </TableCell>
-                                    </Link>
                                     <TableCell align='center' sx={{ width: "20%" }}>
                                         <StatusBox status={item.status} count={item.count} />
                                     </TableCell>

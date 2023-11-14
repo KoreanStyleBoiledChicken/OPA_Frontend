@@ -9,11 +9,11 @@ const YamlFileUploadPage = (props: Props) => {
     return (
         <Box sx={{
         }}>
-                <Typography variant="h4" sx={{ fontWeight: "bold", color:colorConfigs.green.shade5 }}>
-                    File Upload
-                </Typography>
-                <Box padding="15px"></Box>
-                <FileDragDrop></FileDragDrop>
+            <Typography variant="h4" sx={{ fontWeight: "bold", color:colorConfigs.green.shade5 }}>
+                File Upload
+            </Typography>
+            <Box padding="15px"></Box>
+            <FileDragDrop></FileDragDrop>
         </Box>
     )
 }

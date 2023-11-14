@@ -25,7 +25,8 @@ const AvatarBox = (props: Props) => {
             <Avatar sx={{ bgcolor: getRandomColor(props.companyName[0]) }}>
                 {props.companyName[0]}
             </Avatar>
-            <Typography sx={{ fontSize: "14px" }}>{props.companyName}</Typography>
+            <Box padding="1px"></Box>
+            <Typography sx={{ fontSize: "14px",  }}>{props.companyName}</Typography>
         </Box>
     )
 }
