@@ -4,11 +4,13 @@ import AvatarBox from '../pullRequest/component/AvatarBox'
 import colorConfigs from '../../config/colorConfigs'
 import StatusBox from '../pullRequest/component/StatusBox'
 import PullRequestDetailListBox from './component/PullRequestDetailListBox'
+import { useLocation } from 'react-router-dom'
 
-type Props = {
-    pr: PullRequestType
-}
-const PullRequestDetailPage = (props: Props) => {
+
+const PullRequestDetailPage = () => {
+    const location = useLocation();
+    const state = location.state as { pr: PullRequestType  };
+
     return (
         <Box sx={{
         }}>
@@ -22,27 +24,28 @@ const PullRequestDetailPage = (props: Props) => {
                     alignItems: "center",
                     width: "70%",
                 }}>
-                    <AvatarBox companyName={props.pr.companyName} />
+                    <AvatarBox companyName={state.pr.companyName} />
                     <Box sx={{
                         marginX: "40px",
                         padding: "20px",
                         width: "30%",
                     }}>
-                        <Typography variant='h5' sx={{ fontWeight: "bold" }}>{props.pr.prName}</Typography>
+                        <Typography variant='h5' sx={{ fontWeight: "bold" }}>{state.pr.prName}</Typography>
                         <Typography sx={{ fontSize: "14px", color: colorConfigs.font.sub }}>
-                            {props.pr.prTimeStamp}
+                            {state.pr.prTimeStamp}
                         </Typography>
                     </Box>
                 </Box>
                 <Box sx={{
                     paddingX: "20px"
                 }}>
-                    <StatusBox status={props.pr.status} count={props.pr.count}></StatusBox>
+                    <StatusBox status={state.pr.status} count={state.pr.count}></StatusBox>
                 </Box>
             </Box>
             <Divider></Divider>
-            <PullRequestDetailListBox></PullRequestDetailListBox>
-            
+            {state.pr.status === '검사중' ? null
+                : <PullRequestDetailListBox></PullRequestDetailListBox>
+            }
         </Box>
     )
 }

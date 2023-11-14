@@ -6,6 +6,7 @@ import StatusBox from './component/StatusBox'
 import AvatarBox from './component/AvatarBox'
 import { PullRequestType } from '../../models/PullRequestType'
 import { setAppState } from '../../redux/appslice'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -15,13 +16,14 @@ const PullRequestPage = () => {
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
+    const navigate = useNavigate();
 
     function handleLinkClick (e : any, prType : PullRequestType ) {
         e.preventDefault();
         setAppState(prType);
         console.log(prType.companyName);
-    
-        window.location.href = `/pull-requests/1`;
+        navigate(`/pull-requests/${prType.id}`,{state: {pr : prType}}
+        );
       }
 
     return (
