@@ -7,13 +7,13 @@ import RelatedCollaspItem from './FileRelatedCollaspItem';
 import { RuleEnum } from '../../../enums/RuleEnum';
 import IngressCollaspItem from './IngressCollaspItem';
 import ImageCollaspItem from './ImageCollaspItem';
-import { data2, data3, data4 } from '../PullRequestDetailTestData';
+import { data1, data2, data3, data4 } from '../PullRequestDetailTestData';
 
 type Props = {}
 
 const PullRequestDetailListBox = (props: Props) => {
 
-
+    const parsedData1: FileDenyList = JSON.parse(data1);
     const parsedData2: FileDenyList = JSON.parse(data2);
     const parsedData3: IngressDenyList = JSON.parse(data3);
     const parsedData4: ImageDenyList = JSON.parse(data4);
@@ -22,6 +22,19 @@ const PullRequestDetailListBox = (props: Props) => {
             padding: "20px"
         }}>
             <Box padding="10px"></Box>
+            {
+                parsedData1.deny.map((deny, index) => (
+                    deny.ruleId === "RBAC-001" ? (
+                        <Box>
+                            <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>{RuleEnum.RBAC001}</Typography>
+                            {deny.alertObject.externalObjects.relatedObjects.map((relateObj, index) => (
+                                <RelatedCollaspItem obj={relateObj} altMsg={deny.alertMessage}></RelatedCollaspItem>
+                            ))}
+                        </Box>) : null
+                ))
+            }
+
+            <Box padding="40px"></Box>
             {
                 parsedData2.deny.map((deny, index) => (
                     deny.ruleId === "RBAC-002" ? (

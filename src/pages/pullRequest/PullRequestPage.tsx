@@ -49,7 +49,7 @@ const PullRequestPage = () => {
             </Box>
             {/* 리스트뷰 */}
             <Box sx={{
-                marginTop: "20px"
+                marginTop: "2px"
             }}>
                 <Paper>
                     <Table

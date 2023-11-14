@@ -17,18 +17,16 @@ const PullRequestDetailPage = () => {
             <Box display="flex" justifyContent="space-between"
                 sx={{
                     alignItems: "center",
-                    width: "100%",
                     verticalAlign: "bottom"
                 }}>
                 <Box display="flex" sx={{
                     alignItems: "center",
-                    width: "70%",
+
                 }}>
                     <AvatarBox companyName={state.pr.companyName} />
                     <Box sx={{
                         marginX: "40px",
                         padding: "20px",
-                        width: "30%",
                     }}>
                         <Typography variant='h5' sx={{ fontWeight: "bold" }}>{state.pr.prName}</Typography>
                         <Typography sx={{ fontSize: "14px", color: colorConfigs.font.sub }}>
